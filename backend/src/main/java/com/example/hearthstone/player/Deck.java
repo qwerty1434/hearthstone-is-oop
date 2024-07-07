@@ -2,11 +2,12 @@ package com.example.hearthstone.player;
 
 import com.example.hearthstone.basic.card.Card;
 import com.example.hearthstone.basic.card.Fatigue;
+import com.example.hearthstone.basic.card.InGameCard;
 
 import java.util.Deque;
 
 public class Deck {
-    private Deque<Card> deck;
+    private Deque<InGameCard> deck;
 
     // 탈진은 객체에 포함되어야 한다?
     // 덱에서 카드를 뽑을 때마다 탈진을 확인해야 하기 때문에 밀접한 관련이 있음
@@ -15,13 +16,13 @@ public class Deck {
     private boolean isHighlander;
 
     // 뽑다
-    public Card drawn() {
+    public InGameCard drawn() {
         // 핸드에 들어갔을 때 자동적으로 사용되게 한다? 핸드에 들어가는 개념이면 10장있을 때 탈진을 안받아버리네
         if(deck.isEmpty()) {
             return new Fatigue(fatigueDamage++);
         }
         // TODO : 뽑을 때 시전 : 효과를 시전하고 다음 카드를 뽑는다, 재귀?
-        Card card = deck.pollFirst();
+        InGameCard card = deck.pollFirst();
         card.whenDrawn();
 
         return card;
@@ -50,6 +51,10 @@ public class Deck {
 
     }
 
+    // 카드는 정해져있지만 매 게임마다 인스턴스로 만들어야 버프같은게 유지됨
+    public void makeInstance() {}
+
+    public void shuffle() {}
 
 
 }

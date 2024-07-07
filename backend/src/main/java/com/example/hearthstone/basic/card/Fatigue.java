@@ -11,19 +11,6 @@ public class Fatigue implements Card{ // Card를 상속받아야 하는가?
         this.fatigueDamage = fatigueDamage;
     }
 
-    @Override
-    public void whenDrawn() {
 
-    }
-
-    @Override
-    public void whenUsed() {
-
-    }
-
-    @Override
-    public void whenDiscarded() {
-
-    }
 
 }

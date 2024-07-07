@@ -66,7 +66,14 @@ public class Game {
         턴을 List로 만들고 해당 List에 들어있는 카드들의 효과를 발동한다?
         해당 카드의 효과가 끝나거나 해당 하수인이 죽었을 때 리스트에서 제거하는 건 어떻게?
 
+        그냥 모든 필드카드의 효과를 발생시켜보면 될듯
      */
 
+    private void myTurnEnds(Player p1, Player p2) {
+        p1.getField().getField().stream()
+                .peek(v -> v.whenMyTurnEnds());
+        p2.getField().getField().stream()
+                .peek(v -> v.whenOpponentTurnEnds());
+    }
 
 }
