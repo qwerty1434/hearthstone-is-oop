@@ -5,9 +5,7 @@ public interface InGameCard extends Card{
     void whenDrawn();
     void whenUsed();
     void whenDiscarded();
-    void whenMyTurnStarts();
-    void whenMyTurnEnds();
-    void whenOpponentTurnStarts();
-    void whenOpponentTurnEnds();
+    void whenTurnEnds();
+    void whenTurnStarts();
 
 }

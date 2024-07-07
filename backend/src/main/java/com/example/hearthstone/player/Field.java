@@ -9,4 +9,11 @@ import java.util.List;
 public class Field {
     List<InGameCard> field;
 
+    public void turnStarts() {
+        field.forEach(InGameCard::whenTurnStarts);
+    };
+
+    public void turnEnds() {
+        field.forEach(InGameCard::whenTurnEnds);
+    };
 }

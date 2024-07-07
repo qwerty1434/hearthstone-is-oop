@@ -25,7 +25,8 @@ public class Game {
 
         startGame(p1, p2);
         while(true) {
-
+            new Turn().proceed();
+            new Turn().proceed();
         }
     }
 
@@ -42,38 +43,6 @@ public class Game {
         p2.getHand().addCard(new Coin());
 
 
-    }
-
-    private void turn(Player player) {
-        // 턴이 시작할 때 실행되어야 할 것들
-        player.resetManaWhenTurnStarts();
-        player.drawCardFromDeck();
-        // == 다양한 행동을 할 수 있다(카드를 사용한다, 공격한다, ...) == //
-        player.endTurn();
-        // 턴이 끝날 때 실행되어야 할 것들
-    }
-
-    // 턴 관련
-    /*
-        내 턴이 시작될 때
-        내 턴이 끝날 때
-        상대 턴이 시작될 때
-        상태 턴이 끝날 때
-        각 플레이어의 턴이 시작/끝날 때
-        지난 턴, 이번 턴 ~~를 했으면 -> 모든 액션을 로그처럼 stack에 쌓는다? [턴, 플레이어, 행동], ...
-        매 턴
-
-        턴을 List로 만들고 해당 List에 들어있는 카드들의 효과를 발동한다?
-        해당 카드의 효과가 끝나거나 해당 하수인이 죽었을 때 리스트에서 제거하는 건 어떻게?
-
-        그냥 모든 필드카드의 효과를 발생시켜보면 될듯
-     */
-
-    private void myTurnEnds(Player p1, Player p2) {
-        p1.getField().getField().stream()
-                .peek(v -> v.whenMyTurnEnds());
-        p2.getField().getField().stream()
-                .peek(v -> v.whenOpponentTurnEnds());
     }
 
 }

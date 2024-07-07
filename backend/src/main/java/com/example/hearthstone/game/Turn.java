@@ -1,0 +1,56 @@
+package com.example.hearthstone.game;
+
+import com.example.hearthstone.player.Player;
+
+public class Turn {
+    private Player me;
+    private Player opponent;
+
+    public void proceed() {
+        starts();
+
+        // player play game //
+
+        ends();
+    }
+
+    // 이벤트 통을 두고 pub/sub한다?
+    private void starts() {
+        me.getField().turnStarts();
+        opponent.getField().turnStarts();
+
+        me.resetManaWhenTurnStarts();
+        me.drawCardFromDeck();
+    }
+
+    private void ends() {
+        me.getField().turnEnds();
+        opponent.getField().turnEnds();
+
+        me.endTurn();
+    }
+    /*
+        내 턴이 진행될 때 상대는 아무런 행동을 못해야 함
+
+     */
+
+    // 턴 관련
+    /*
+        내 턴이 시작될 때
+        내 턴이 끝날 때
+        상대 턴이 시작될 때
+        상태 턴이 끝날 때
+        각 플레이어의 턴이 시작/끝날 때
+        지난 턴, 이번 턴 ~~를 했으면 -> 모든 액션을 로그처럼 stack에 쌓는다? [턴, 플레이어, 행동], ...
+        매 턴
+
+        턴을 List로 만들고 해당 List에 들어있는 카드들의 효과를 발동한다?
+        해당 카드의 효과가 끝나거나 해당 하수인이 죽었을 때 리스트에서 제거하는 건 어떻게?
+
+        그냥 모든 필드카드의 효과를 발생시켜보면 될듯
+
+        하수인에게 매턴 +2/+2효과를 부여하는 주문 -> 하수인과 생명주기가 같음 -> 하수인을 오버라이드?
+     */
+
+
+}
