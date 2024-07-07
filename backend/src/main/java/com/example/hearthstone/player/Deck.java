@@ -7,6 +7,10 @@ import java.util.Deque;
 
 public class Deck {
     private Deque<Card> deck;
+
+    // 탈진은 객체에 포함되어야 한다?
+    // 덱에서 카드를 뽑을 때마다 탈진을 확인해야 하기 때문에 밀접한 관련이 있음
+    // 하지만 탈진이 덱에서 뽑는 것에만 국한된 건 아님
     private Integer fatigueDamage; // 탈진
     private boolean isHighlander;
 
@@ -23,8 +27,13 @@ public class Deck {
         return card;
     }
 
+    // N개의 카드를 제시하다
+    public void presentCardsFromDeck(int count) {
+
+    }
+
     // 발견하다
-    public void discover() {
+    public void discovered() {
 
     }
 
@@ -36,6 +45,10 @@ public class Deck {
 
     // 특정 카드를 뽑습, 발견 등등 -> Deck을 for문 돌면서 filtering
 
+    // 개전 효과를 적용하다
+    public void applyStartOfGameEffect() {
+
+    }
 
 
 

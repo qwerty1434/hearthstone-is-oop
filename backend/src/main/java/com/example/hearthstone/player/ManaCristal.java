@@ -18,7 +18,7 @@ public class ManaCristal {
         return new ManaCristal(10,1,1,0);
     }
 
-    public void setManaCristal() {
+    public void resetManaCristal() {
         if(maximumManaCristal < upperLimitOfManaCristal) {
             maximumManaCristal++;
         }
@@ -34,6 +34,8 @@ public class ManaCristal {
     }
 
     public void gainOverload(Integer overload) {
+        // 다음 턴 얻을 수 있는 최대마나만큼만 과부하를 먹을 수 있다
+
         this.overload += overload;
     }
 
