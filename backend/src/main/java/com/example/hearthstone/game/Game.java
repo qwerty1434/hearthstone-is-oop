@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    /**
+     * 게임이 진행될 동안 필요한 이벤트 pub/sub
+     * pub/sub을 구현하기는 쉽지 않을거 같아 우선 외부 카프카를 사용하고
+     * 이벤트 기반으로 객체들이 동작하도록만 구현해볼 생각
+     */
+
+
+
     Player p1;
     Player p2;
 
