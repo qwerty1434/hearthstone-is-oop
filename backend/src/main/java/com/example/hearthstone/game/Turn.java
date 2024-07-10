@@ -6,6 +6,14 @@ public class Turn {
     private Player me;
     private Player opponent;
 
+    private Integer turnCount;
+
+    public Turn(Player me, Player opponent, Integer turnCount) {
+        this.me = me;
+        this.opponent = opponent;
+        this.turnCount = turnCount;
+    }
+
     public void proceed() {
         starts();
 
@@ -14,18 +22,18 @@ public class Turn {
         ends();
     }
 
-    // 이벤트 통을 두고 pub/sub한다?
+
     private void starts() {
-        me.getField().turnStarts();
-        opponent.getField().turnStarts();
+        me.getField().activateTurnStartsEffects();
+        opponent.getField().activateTurnStartsEffects();
 
         me.resetManaWhenTurnStarts();
         me.drawCardFromDeck();
     }
 
     private void ends() {
-        me.getField().turnEnds();
-        opponent.getField().turnEnds();
+        me.getField().activateTurnEndsEffects();
+        opponent.getField().activateTurnEndsEffects();
 
         me.endTurn();
     }

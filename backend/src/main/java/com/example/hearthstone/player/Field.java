@@ -9,11 +9,11 @@ import java.util.List;
 public class Field {
     List<InGameCard> field;
 
-    public void turnStarts() {
+    public void activateTurnStartsEffects() {
         field.forEach(InGameCard::whenTurnStarts);
     };
 
-    public void turnEnds() {
+    public void activateTurnEndsEffects() {
         field.forEach(InGameCard::whenTurnEnds);
     };
 }

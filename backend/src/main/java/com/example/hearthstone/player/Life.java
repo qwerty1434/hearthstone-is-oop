@@ -11,6 +11,10 @@ public class Life {
         currentLife -= count;
     }
 
+    public boolean isExhausted() {
+        return currentLife <= 0;
+    }
+
     public void isDefeated() {
         if(currentLife < 0) throw new RuntimeException("게임 종료");
     }

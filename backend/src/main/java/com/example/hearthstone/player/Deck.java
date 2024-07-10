@@ -47,6 +47,7 @@ public class Deck {
     // 특정 카드를 뽑습, 발견 등등 -> Deck을 for문 돌면서 filtering
 
     // 개전 효과를 적용하다
+    // StartOfGame : 개전
     public void applyStartOfGameEffect() {
 
     }
