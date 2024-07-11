@@ -1,8 +1,12 @@
 package com.example.hearthstone.player;
 
 
+import com.example.hearthstone.basic.action.Attackable;
 import com.example.hearthstone.basic.card.Card;
 import com.example.hearthstone.basic.card.Fatigue;
+import com.example.hearthstone.basic.target.AttackTarget;
+import com.example.hearthstone.basic.target.range.Range;
+import com.example.hearthstone.player.life.Life;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Player {
+public class Player implements AttackTarget, Attackable {
     private Hero hero;
     private Life life;
     private Shield shield;
@@ -22,6 +26,8 @@ public class Player {
     private Hand hand;
     private ManaCristal mana;
     private Fatigue fatigue;
+    private Integer attack;
+    private WeaponSocket weaponSocket;
 
     public void mulligan(int count) {
         // TODO : 퀘스트는 무조건 멀리건에 잡히고 시작
@@ -90,6 +96,12 @@ public class Player {
 
     public void endTurn() {};
 
+    @Override
+    public void attack(AttackTarget target, Range range) {
+
+        // 무기를 장착하고 있으면 공격 후 무기의 내구도를 잃는다
+
+    }
 
 
 }
