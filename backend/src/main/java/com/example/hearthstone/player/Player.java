@@ -18,6 +18,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Player implements AttackTarget, Attackable {
+    /**
+     * 카드를 내고 턴을 진행하는 플레이어로서의 역할이 있고
+     * 공격을 하고 피해를 받는 게임 내 하나의 객체로서의 역할이 있다
+     */
     private Hero hero;
     private Life life;
     private Shield shield;
@@ -61,15 +65,6 @@ public class Player implements AttackTarget, Attackable {
         this.hero = hero;
     }
 
-    public void isAttacked(int damage) {
-        if(shield.getAmount() < damage) {
-            int lifeDamage = damage - shield.getAmount();
-            shield.loseAll();
-            life.lose(lifeDamage);
-        }else{
-            shield.lose(damage);
-        }
-    }
 
     /**
      * 플레이어는 게임 중 다음과 같은 행동을 할 수 있다
@@ -103,5 +98,19 @@ public class Player implements AttackTarget, Attackable {
 
     }
 
+    @Override
+    public void attacked(int damage) {
+        if(shield.getAmount() < damage) {
+            int lifeDamage = damage - shield.getAmount();
+            shield.loseAll();
+            life.lose(lifeDamage);
+        }else{
+            shield.lose(damage);
+        }
+    }
 
+    @Override
+    public int getDamage() {
+        return attack;
+    }
 }

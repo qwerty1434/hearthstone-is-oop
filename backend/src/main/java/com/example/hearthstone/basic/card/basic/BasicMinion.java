@@ -1,10 +1,19 @@
 package com.example.hearthstone.basic.card.basic;
 
-import com.example.hearthstone.basic.action.Attackable;
-import com.example.hearthstone.basic.condition.Status;
+import com.example.hearthstone.basic.card.Minion;
+import com.example.hearthstone.basic.target.AttackTarget;
+import com.example.hearthstone.basic.target.range.Range;
+import com.example.hearthstone.player.life.Life;
 
-public abstract class BasicMinion
-        implements Attackable, Status {
+public class BasicMinion implements Minion {
     private Integer attack;
-    private Integer health;
+    private Life life;
+    @Override
+    public void attack(AttackTarget target, Range range) {
+        int damage = target.getDamage();
+        life.lose(damage);
+    }
+
+
+
 }
