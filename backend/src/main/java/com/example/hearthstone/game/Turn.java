@@ -6,6 +6,13 @@ public class Turn {
     private Player me;
     private Player opponent;
 
+    /**
+     * 턴은 인스턴스 변수로 뭘 가져야 할까?
+     * turnCount를 가지는게 맞나?
+     * 매 턴마다 Turn객체를 생성해야 할까 아니면 Turn객체를 재활용해야 할까?
+     */
+    private Integer additionalTurnCondition; // 턴 진행 여부
+    
     private Integer turnCount;
 
     public Turn(Player me, Player opponent, Integer turnCount) {
@@ -13,15 +20,25 @@ public class Turn {
         this.opponent = opponent;
         this.turnCount = turnCount;
     }
+    public Turn(Player me, Player opponent) {
+        this.me = me;
+        this.opponent = opponent;
+    }
 
     public void proceed() {
+        opponent.isIncapacitated();
         starts();
 
         // player play game //
 
         ends();
+
+        // return createdAdditionalTurn
     }
 
+    public boolean proceedable() {
+        return additionalTurnCondition >= 1;
+    }
 
     private void starts() {
         me.getField().activateTurnStartsEffects();
@@ -35,6 +52,7 @@ public class Turn {
         me.getField().activateTurnEndsEffects();
         opponent.getField().activateTurnEndsEffects();
 
+        additionalTurnCondition--;
         me.endTurn();
     }
     /*

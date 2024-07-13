@@ -4,6 +4,8 @@ package com.example.hearthstone.player;
 import com.example.hearthstone.basic.action.Attackable;
 import com.example.hearthstone.basic.card.Card;
 import com.example.hearthstone.basic.card.Fatigue;
+import com.example.hearthstone.basic.card.InGameCard;
+import com.example.hearthstone.basic.card.Minion;
 import com.example.hearthstone.basic.target.AttackTarget;
 import com.example.hearthstone.basic.target.range.Range;
 import com.example.hearthstone.player.life.Life;
@@ -73,8 +75,11 @@ public class Player implements AttackTarget, Attackable {
      *  - 무기로 직접 공격한다
      *  - 장소같이 특정 카드의 효과를 사용한다
      */
-    public void spendCard() {
-
+    public void useCardFromHand(int index) {
+        InGameCard card = hand.getHand().get(index);
+        if(card instanceof Minion) {
+            field.getField().add(card);
+        }
     }
 
     public void controlMinion() {
@@ -87,6 +92,11 @@ public class Player implements AttackTarget, Attackable {
 
     public void activateEffect() {
 
+    }
+
+    public void isIncapacitated() {
+        // 상대 턴에는 아무런 행동도 할 수 없다.
+        // 이걸 메서드로 한다? 그거보다 소켓통신 레벨에서 해결하는게 좋아보임
     }
 
     public void endTurn() {};

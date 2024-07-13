@@ -4,6 +4,8 @@ import com.example.hearthstone.basic.card.basic.Coin;
 import com.example.hearthstone.player.Player;
 import com.example.hearthstone.user.User;
 
+import java.util.List;
+
 public class Game {
     /**
      * 게임이 진행될 동안 필요한 이벤트 pub/sub
@@ -22,6 +24,8 @@ public class Game {
 
     Integer turnCount;
 
+    List<Turn> history;
+
 
     /**
      * 모든 순간 게임이 끝났는지 여부를 판단해야 한다
@@ -39,12 +43,18 @@ public class Game {
 
         startGame(p1, p2);
         while(p1.defeat() || p2.defeat()) {
+            // 턴 여러번 하기
+            Turn p1Turn = null;
+            while(p1Turn.proceedable()) {
+                p1Turn = new Turn(p1, p2); // 이렇게 턴변수를 재활용하는 형태면 턴카운트는 변수로 주면 안됨.
+                p1Turn.proceed();
+            }
 
-            new Turn(p1,p2,turnCount).proceed();
+
             // TODO : 현재 로직은 플레이어1 턴에 게임이 끝났지만 플레이어2의 턴이 진행된다.
             // 턴에서 게임이 끝났다는 값을 받으면 break으로 while 탈출하기?
             // 그러면 while의 조건은 true로(무한루프) 해도 될거 같은데?
-            new Turn(p2,p1,turnCount).proceed();
+            new Turn(p2,p1,turnCount++).proceed();
 
             turnCount++;
         }

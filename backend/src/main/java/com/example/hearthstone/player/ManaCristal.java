@@ -5,6 +5,7 @@ public class ManaCristal {
     private Integer upperLimitOfManaCristal;
     private Integer maximumManaCristal;
     private Integer availableMana;
+    // 과부하 자체는 10을 초과해 더 많이 먹을 수 있다 (이번턴 과부하먹은만큼 데미지줄때 30몇뎀 이렇게 주기도 한다)
     private Integer overload;
 
     public ManaCristal(Integer upperLimitOfManaCristal, Integer maximumManaCristal, Integer availableMana, Integer overload) {
