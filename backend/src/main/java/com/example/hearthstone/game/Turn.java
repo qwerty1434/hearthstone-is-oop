@@ -12,14 +12,8 @@ public class Turn {
         this.opponent = opponent;
     }
 
-    /**
-     * 나중에 주문이 됐을 때는
-     * 주문이 내 필드의 하수인을 대상으로 하는건지, 상대 필드의 하수인을 대상으로 하는건지
-     */
     public void useCard(int handIndex, int fieldIndex) {
-        Minion card = (Minion)me.getHand().useCard(handIndex);
-        me.getField().setCard(card, fieldIndex);
-
+        me.useCard(handIndex, fieldIndex);
     }
 
     public void proceedAttack(int attackerIndex, int defenderIndex) {

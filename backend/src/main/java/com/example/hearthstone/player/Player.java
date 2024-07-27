@@ -7,7 +7,7 @@ public class Player {
     Hand hand = new Hand();
     Field field = new Field();
 
-    void useCard(int handIndex, int fieldIndex) {
+    public void useCard(int handIndex, int fieldIndex) {
         Card card = hand.useCard(handIndex);
         if(card instanceof Minion) {
             Minion minion = (Minion) card;
