@@ -1,4 +1,4 @@
 package com.example.hearthstone.card.Spell;
 
-public class AreaOfEffectSpell implements Spell{
+public interface AreaOfEffectSpell extends Spell{
 }

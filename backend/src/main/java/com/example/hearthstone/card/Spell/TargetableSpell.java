@@ -1,4 +1,8 @@
 package com.example.hearthstone.card.Spell;
 
-public class TargetableSpell implements Spell{
+import com.example.hearthstone.component.targetable.Targetable;
+
+public interface TargetableSpell extends Spell, Targetable {
+
+
 }
