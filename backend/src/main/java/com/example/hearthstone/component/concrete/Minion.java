@@ -1,6 +1,7 @@
 package com.example.hearthstone.component.concrete;
 
 import com.example.hearthstone.component.actor.Attacker;
+import com.example.hearthstone.component.concrete.component.MinionLife;
 import com.example.hearthstone.component.target.Defender;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -9,15 +10,14 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Minion implements Attacker, Defender {
     Integer attackPower;
-    Integer health;
+    MinionLife life;
     Integer attackCapacity;
 
     private Minion() {}
 
 
-
     public boolean isDied() {
-        return health <= 0;
+        return life.isExhausted();
     }
 
     public void whenDiesHook() {
@@ -47,10 +47,9 @@ public class Minion implements Attacker, Defender {
         return attackCapacity > 0;
     }
 
-
     @Override
     public void gotDamage(int damage) {
-        loseHealth(damage);
+        life.lose(damage);
         if(isDied()) {
             // removeFromField(여기서 죽음의 메아리도?)
 
@@ -58,8 +57,8 @@ public class Minion implements Attacker, Defender {
     }
 
     @Override
-    public void loseHealth(int damage) {
-        health -= damage;
+    public void restoreHealth(int heal) {
+        life.gain(heal);
     }
 
     @Override
@@ -69,10 +68,12 @@ public class Minion implements Attacker, Defender {
 
     @Override
     public void adjustStat(int attackPower, int health) {
-        // 일시적인 것과 영구적인것 구분 필요
+        // TODO : 일시적인 것과 영구적인것 구분 필요.
+        //  일시적인 것의 판단을 Turn 또는 Gain에게 맡긴다?
         attackPower += attackPower;
         health += health;
     }
+
 
 
 }

@@ -5,6 +5,8 @@ package com.example.hearthstone.component.target;
  * cf) {@link com.example.hearthstone.component.actor} : 타겟에게 어떤 동작을 실행한다
  */
 public interface Target {
-    void loseHealth(int damage);
+    void gotDamage(int damage);
+    void restoreHealth(int heal);
     void adjustStat(int attackPower, int health);
+
 }

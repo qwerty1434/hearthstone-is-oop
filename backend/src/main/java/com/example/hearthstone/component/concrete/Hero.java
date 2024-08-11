@@ -1,10 +1,11 @@
 package com.example.hearthstone.component.concrete;
 
 import com.example.hearthstone.component.actor.Attacker;
+import com.example.hearthstone.component.concrete.component.HeroLife;
 import com.example.hearthstone.component.target.Defender;
 
 public class Hero implements Attacker, Defender {
-    Integer health;
+    HeroLife life;
     Integer attackCapacity;
 
     @Override
@@ -18,10 +19,6 @@ public class Hero implements Attacker, Defender {
         return false;
     }
 
-    @Override
-    public void gotDamage(int damage) {
-        health -= damage;
-    }
 
     @Override
     public int recoilDamage() {
@@ -29,8 +26,13 @@ public class Hero implements Attacker, Defender {
     }
 
     @Override
-    public void loseHealth(int damage) {
+    public void gotDamage(int damage) {
+        life.lose(damage);
+    }
 
+    @Override
+    public void restoreHealth(int heal) {
+        life.gain(heal);
     }
 
     @Override
