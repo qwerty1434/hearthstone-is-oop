@@ -1,5 +1,8 @@
 package com.example.hearthstone.game;
 
+import com.example.hearthstone.component.action.TargetableAction;
+import com.example.hearthstone.component.target.Target;
+import com.example.hearthstone.component.actor.Actor;
 import com.example.hearthstone.player.Player;
 import lombok.Getter;
 
@@ -31,8 +34,8 @@ public class Game {
         nowTurn.useCard(handIndex, fieldIndex);
     }
 
-    public void attack(int attackerIndex, int defenderIndex) {
-        nowTurn.proceedAttack(attackerIndex, defenderIndex);
+    public void targetableAction(Actor actor, Target target, TargetableAction action) {
+        nowTurn.targetableAction(actor, target, action);
     }
 
     public void endTurn() {

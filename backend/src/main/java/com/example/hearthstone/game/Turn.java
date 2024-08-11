@@ -1,6 +1,11 @@
 package com.example.hearthstone.game;
 
-import com.example.hearthstone.card.Minion;
+import com.example.hearthstone.component.action.Attack;
+import com.example.hearthstone.component.action.TargetableAction;
+import com.example.hearthstone.component.actor.Attacker;
+import com.example.hearthstone.component.target.Defender;
+import com.example.hearthstone.component.target.Target;
+import com.example.hearthstone.component.actor.Actor;
 import com.example.hearthstone.player.Player;
 
 public class Turn {
@@ -16,16 +21,20 @@ public class Turn {
         me.useCard(handIndex, fieldIndex);
     }
 
-    public void proceedAttack(int attackerIndex, int defenderIndex) {
-        Minion attacker = me.getField().controlCard(attackerIndex);
-        Minion defender = opponent.getField().controlCard(defenderIndex);
-        attacker.attack(defender);
-        if(attacker.isDied()) {
-            me.getField().removeCard(attackerIndex);
-        }
-        if(defender.isDied()) {
-            opponent.getField().removeCard(defenderIndex);
-        }
+
+    public void targetableAction(Actor actor, Target target, TargetableAction action) {
+        action.acts(actor,target);
+
+//        Minion attacker = actor.getActor();
+//        attacker.attack(target);
+//
+//        if(attacker.isDied()) {
+//            me.getField().removeCard(actor.getIndex());
+//        }
+//
+//        if(target.getTarget().isDied()) {
+//            opponent.getField().removeCard(target.getIndex());
+//        }
     }
 
     public void turnStarts() {}

@@ -31,7 +31,7 @@ class GameTest {
         game.useCard(0,0);
 
         // when
-        game.attack(0,1);
+        game.targetableAction(0,1);
 
         // then
         assertThat(game.getP1().getHand().getHand()).isEmpty();
